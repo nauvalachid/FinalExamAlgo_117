@@ -9,14 +9,15 @@ string nama[MAX_MAHASISWA];
 int tahunMasuk[MAX_MAHASISWA];
 int jumlahMahasiswa = 0;
 
-void tambahMahasiswa{
+void tambahMahasiswa(){
 	if (jumlahMahasiswa < MAX_MAHASISWA) {
 		cout << "========== TAMBAH MAHASISWA ==========" << endl;
 		cout << "NIM : ";
 		cin >> NIM[jumlahMahasiswa];
 		cin.ignore();
 		cout << "Nama : ";
-		getline(cin, jurusan[jumlahMahasiswa]);
+		cin >> nama[jumlahMahasiswa];
+		cin.ignore();
 		cout << "Tahun Masuk: ";
 		cin >> tahunMasuk[jumlahMahasiswa];
 		cin.ignore();
@@ -39,8 +40,8 @@ if (jumlahMahasiswa > 0) {
 	}
 }
 else {
-	cout << "Belum ada data mahasiswa yang tersimpan." << endl;
-}
+	cout << "Belum ada data mahasiswa yang dimasukkan." << endl;
+	}
 }
 
 void algorithmacariMahasiswaByNIM(){
@@ -60,22 +61,35 @@ for (int i = 0; i < jumlahMahasiswa; i++) {
 		break;
 	}
 }
-if (!found) {
+if (found) {
 	cout << "Mahasiswa dengan NIM " << nim << " tidak ditemukan." << endl;
 }
 }
 
 void algorithmSortByTahunMasuk() {
+	cout << "========== MAHASISWA BERDASARKAN TAHUN MASUK ==========" << endl;
+	if (jumlahMahasiswa == 0) {
+		cout << "Belum ada data mahasiswa." << endl;
+		return;
+	}
+
 	for (int i = 0; i < jumlahMahasiswa - 1; i++) {
 		for (int j = 0; j < jumlahMahasiswa - i - 1; j++) {
-			if (tahunMasuk[j] > tahunMasuk[j + 1]) {
+			if (tahunMasuk[j] > tahunMasuk[j + 1])
 				swap(NIM[j], NIM[j + 1]);
 				swap(nama[j], nama[j + 1]);
 				swap(tahunMasuk[j], tahunMasuk[j + 1]);
-			}
 		}
 	}
+
+	for (int i = 0; i < jumlahMahasiswa; i++) {
+		cout << "NIM   : " << NIM[i] << endl;
+		cout << "Nama  : " << nama[i] << endl;
+		cout << "Tahun Masuk: " << tahunMasuk[i] << endl;
+		cout << endl;
+	}
 }
+
 int main() {
 	int pilihan;
 	do {
@@ -90,16 +104,16 @@ int main() {
 		cin.ignore();
 		switch (pilihan) {
 		case 1:
-			//isi disini
+			tambahMahasiswa();
 			break;
 		case 2:
-			//isi disini
+			tampilkanSemuaMahasiswa();
 			break;
 		case 3:
-			//isi disini
+			algorithmacariMahasiswaByNIM();
 			break;
 		case 4:
-			//isi disini
+			algorithmSortByTahunMasuk();
 			break;
 		case 5:
 			cout << "Terima kasih! Program selesai." << endl;
@@ -111,3 +125,12 @@ int main() {
 	} while (pilihan != 5);
 	return 0;
 }
+
+//2.Algoritma yang digunakan:
+//  a.bubble sort mengurutkan data mahasiswa
+//  b.insertionsort menambahkan data
+//3.Stack:algoritma yang terdapat Push & POP
+//	Queue:algoritma yang terdapat Enqueue & Dequeue
+//4.Menggunakan algoritma Stack saat ingin mengurutkan tumpukan/mengatur tumpukan agar lebih tertata
+//5.a.8
+//  b.
